@@ -1,0 +1,61 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Logs
+logs
+*.log
+*.log.*
+*.out
+*.err
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Build / dist
+dist/
+build/
+out/
+coverage/
+tmp/
+.cache/
+.next/
+.nuxt/
+
+# TypeScript
+*.tsbuildinfo
+
+# Tests
+coverage/
+.jest/
+
+# Docker
+docker-compose.override.yml
+*.pid
+
+# Misc
+*.tgz
+*.zip
+*.tar
+*.db
+
+# Custom
+test_dialog.sh
+test_microservices.sh
