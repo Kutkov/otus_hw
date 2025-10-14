@@ -1,0 +1,24 @@
+@startuml
+title Монолит и Диалог-сервис: последовательность взаимодействий
+
+actor Клиент as Client
+participant "Монолит" as Monolith
+participant "Диалог-сервис" as Dialog
+
+== Отправка сообщения ==
+Client -> Monolith: POST /dialog/{userId}/send\nAuthorization: Bearer <token>
+Monolith -> Monolith: Проверка токена и прав
+Monolith -> Dialog: POST /dialog/{userId}/send\nAuthorization: Bearer <token>
+Dialog -> Dialog: Валидация токена (мок/через монолит)\nСохранение сообщения
+Dialog --> Monolith: 201 Created / 200 OK
+Monolith --> Client: 201 Created / 200 OK
+
+== Получение истории ==
+Client -> Monolith: GET /dialog/{userId}/list\nAuthorization: Bearer <token>
+Monolith -> Monolith: Проверка токена и прав
+Monolith -> Dialog: GET /dialog/{userId}/list\nAuthorization: Bearer <token>
+Dialog -> Dialog: Валидация токена (мок/через монолит)\nЧтение истории сообщений
+Dialog --> Monolith: 200 OK
+Monolith --> Client: 200 OK
+
+@enduml

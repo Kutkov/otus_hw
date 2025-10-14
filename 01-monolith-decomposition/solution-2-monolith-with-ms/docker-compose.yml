@@ -1,0 +1,30 @@
+services:
+  monolith:
+    build:
+      context: ./monolith
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SQLITE_PATH=/app/monolith.db
+    volumes:
+      - ./monolith:/app
+      - monolith-data:/app
+    depends_on:
+      - dialog-service
+
+  dialog-service:
+    build:
+      context: ./dialog-service
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - SQLITE_PATH=/app/dialog-service.db
+    volumes:
+      - ./dialog-service:/app
+      - dialog-service-data:/app
+
+volumes:
+  monolith-data:
+  dialog-service-data:
